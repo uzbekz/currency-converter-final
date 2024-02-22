@@ -1,0 +1,239 @@
+<html>
+    <head>
+        <title>Currency Converter</title>
+        <style>
+            *{
+                margin: 0;
+                font-family: 'Poppins',sans-serif;
+                font-weight: 600;
+                color: #ebeae8;
+            }
+            .parent{
+                margin-top: 0;
+                background-color: #ffffff;
+                width: 100%;
+                height: 100%;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                background-image: url(memphis-mini.webp);
+            }
+            .container{
+                width: 375px;   
+                height: 500px;
+                background-color: white;
+                border-radius: 10px;
+            }
+            .container input[type="text"]{
+                width: 85%;
+                padding: 35px;
+            }   
+            .ll{
+                display: flex;
+                justify-content: center;
+                background-color: rgb(28, 27, 27);
+                border-top-right-radius: 10px;
+                border-top-left-radius: 10px;
+                border-bottom: 3px solid white;
+            }
+            .ll input[type="text"]{
+                text-align: right;
+                border: transparent;
+                background-color: #1b1c1e;
+                text-decoration-color: aliceblue;
+                font-size: 2rem;
+                font-weight: 600;
+            }
+            .buttons{
+                display: flex;
+                gap: 1rem;
+                margin-top: 1rem;
+                margin-left: 2.3rem;   
+            }
+            select{
+                margin-top: 10px;
+                background-color:#f1af60;
+                border-radius: 5px;
+                color: #1b1c1e;
+                font-weight: 900;
+            }
+            span{
+                font-weight: 1000;
+                color: white;
+                letter-spacing: 2.5px;
+            }
+            .container input[type="button"]{
+                width: 60px;
+                height: 60px;
+                background-color: #847d6a;
+                border-radius: 10px;
+                border: transparent;
+                font-size: larger;
+                color: #fefeff;
+                font-weight: 1000;
+            }
+            input[type="button"]:hover{
+                border: 2px solid #ffffdd;
+            }
+            .header{
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                margin:0;
+                width: 100%;
+                height: 100px;
+                background-color: #f1af60;
+            }
+            h1{
+                text-align: center;
+                font-weight: 1000;
+                color: white;
+                letter-spacing: 4px;
+            }
+        </style>
+    </head>
+    <body>
+        <div class="header" id="font">
+            <h1>CURRENCY CONVERTER</h1>
+        </div>
+        <div class="parent">
+            <div class="container" style="background-color:#2a2a2c">
+                <form id="final-form" method="get" action="">
+                    <div class="ll">
+                        <input type="text" id="display" name="display" placeholder="currency input..." class="textbox">
+                    </div>
+                    <div style="margin-left: 50px;">
+                        <label for="from-currency"><span>FROM</span></label>
+                        <select name="from-currency" id="from-currency">
+                            <option value="INR">indian</option>
+                            <option value="USD">american</option>
+                            <option value="YEN">japanese</option>
+                            <option value="IB">pounds</option>
+                            <option value="EUR">euros</option>
+                        </select>
+                        <label for="to-currency"><span>TO</span></label>
+                        <select name="to-currency" id="to-currency">
+                            <option value="INR">indian</option>
+                            <option value="USD">american</option>
+                            <option value="YEN">japanese</option>
+                            <option value="IB">pounds</option>
+                            <option value="EUR">euros</option>
+                        </select>
+                    </div>
+                    <div class="buttons" >
+                        <input type="button" value="1" onclick="document.getElementById('display').value += '1' ">
+                        <input type="button" value="2" onclick="document.getElementById('display').value += '2' ">
+                        <input type="button" value="3" onclick="document.getElementById('display').value += '3' ">
+                        <input type="button" value="AC" style="background-color: #f1af60" onclick="document.getElementById('display').value = ' ' ">
+                    </div>
+                    <div class="buttons">
+                        <input type="button" value="5" onclick="document.getElementById('display').value += '5' ">
+                        <input type="button" value="6" onclick="document.getElementById('display').value += '6' ">
+                        <input type="button" value="7" onclick="document.getElementById('display').value += '7' ">
+                        <input type="button" value="del" style="background-color: #f1af60" onclick="document.getElementById('display').value = document.getElementById('display').value.toString().slice(0,-1)">
+                    </div>
+                    <div class="buttons">
+                        <input type="button" value="9" onclick="document.getElementById('display').value += '9' ">
+                        <input type="button" value="0" onclick="document.getElementById('display').value += '0' ">
+                        <input type="button" value="4" onclick="document.getElementById('display').value += '4' ">
+                        <input type="button" value="." style="background-color: #f1af60;"onclick="document.getElementById('display').value += '.' ">
+                    </div>
+                    <div class="buttons">
+                        <input type="button" value="8" onclick="document.getElementById('display').value += '8' ">
+                        <input type="button" class="b" value="=" style="background-color: #f1af60; width: 213px;";form="final-form" onclick="convertCurrency()">
+                    </div>
+                </form>
+            </div>
+            
+        </div>
+
+        <script>
+            function convertCurrency() {
+                var display = document.getElementById('display').value;
+                var fromCurrency = document.getElementById('from-currency').value;
+                var toCurrency = document.getElementById('to-currency').value;
+                if (fromCurrency === "INR") {
+                switch (toCurrency) {
+            case "USD":
+                document.getElementById('display').value = display * 0.014;
+                break;
+            case "YEN":
+            document.getElementById('display').value= display * 1.49;
+                break;
+            case "IB":
+            document.getElementById('display').value = display * 0.0091;
+                break;
+            case "EUR":
+            document.getElementById('display').value= display * 0.011;
+                break;
+        }
+            }
+        
+        else if(fromCurrency == "USD"){
+            switch(toCurrency){
+                case "INR":
+                    document.getElementById('display').value = display * 74.76;
+                    break;       
+                case "YEN":
+                    document.getElementById('display').value = display * 113.05;
+                    break;
+                case "IB":
+                    document.getElementbyId('display').value = diaplay * 0.73;
+                    break;
+                case "EUR":
+                    document.getElementById('display').value = display * 0.82;
+                    break;     
+            }
+        }
+        else if(fromCurrency == "YEN"){
+            switch(toCurrency){
+                case "INR":
+                    document.getElementById('display').value = display * 0.5523;
+                    break;
+                case "USD":
+                    document.getElementById('display').value = display * 0.007;
+                    break;
+                case "IB":
+                    document.getElementById('display').value = display * 0.005263;
+                    break;
+                case "EUR":
+                    document.getElementById('display').value = display * 0.0062;
+                    break;
+            }
+        }
+        else if(fromCurrency == "IB"){
+            switch(toCurrency){
+                case "INR":
+                    document.getElementById('display').value = display * 104.89;
+                    break;
+                case "USD":
+                    document.getElementById('display').value = display * 1.26;
+                    break;
+                case "YEN":
+                    document.getElementById('display').value = display * 190.02;
+                    break;
+                case "EUR":
+                    document.getElementById('display').value = display * 1.17;
+                    break;
+            }
+        }
+        else if(fromCurrency == "EUR"){
+            switch(toCurrency){
+                case "INR":
+                    document.getElementById('display').value = display * 89.88;
+                    break;
+                case "USD":
+                    document.getElementById('display').value = display * 1.08;
+                    break;
+                case "YEN":
+                    document.getElementById('display').value = display * 162.87;
+                    break;
+                case "IB":
+                    document.getElementById('display').value = display * 0.86;
+                    break;
+            }
+        }
+    }
+        </script>
+    </body>
+</html>
